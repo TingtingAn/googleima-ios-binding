@@ -1,9 +1,8 @@
-# FMDB - Xamarin iOS Binding Library
+# Google IMA - Xamarin iOS Binding Library
 
-For detail of how to use this library, please refer to its [original guideline](https://github.com/ccgus/fmdb)
-This binding library is intend to use as a lib including for other bindings. 
-For SQLite in Xamarin, plz use SQLite.NET for much better stability and APIs.
+This is the binding library for Goole IMA library on iOS. 
+Plz follow the official guide from Google [here](https://developers.google.com/interactive-media-ads/);
 
 ```
-Install-Package Naxam.FMDB.iOS
+Install-Package Naxam.GoogleIMA.iOS
 ```

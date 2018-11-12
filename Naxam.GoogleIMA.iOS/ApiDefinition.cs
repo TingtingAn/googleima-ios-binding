@@ -364,7 +364,7 @@ namespace GoogleIMA
 		// -(instancetype)initWithAdContainer:(UIView *)adContainer companionSlots:(NSArray *)companionSlots __attribute__((objc_designated_initializer));
 		[Export ("initWithAdContainer:companionSlots:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (UIView adContainer, NSObject[] companionSlots);
+        IntPtr Constructor (UIView adContainer, [NullAllowed] NSObject[] companionSlots);
 	}
 
 	// @interface IMAAdError : NSObject
@@ -692,22 +692,22 @@ namespace GoogleIMA
 		string ContentTitle { get; set; }
 
 		// -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
-		[Export ("initWithAdsResponse:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
-		IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
+		//[Export ("initWithAdsResponse:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
+		//IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
 
 		// -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
-		[Export ("initWithAdsResponse:adDisplayContainer:contentPlayhead:userContext:")]
-		[DesignatedInitializer]
-		IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
+		//[Export ("initWithAdsResponse:adDisplayContainer:contentPlayhead:userContext:")]
+		//[DesignatedInitializer]
+		//IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
 
 		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
-		//[Export ("initWithAdTagUrl:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
-		//IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
+		[Export ("initWithAdTagUrl:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
+		IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
 
 		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
-		//[Export ("initWithAdTagUrl:adDisplayContainer:contentPlayhead:userContext:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAContentPlayhead contentPlayhead, NSObject userContext);
+		[Export ("initWithAdTagUrl:adDisplayContainer:contentPlayhead:userContext:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
 	}
 
     partial interface IIMACompanionDelegate {}

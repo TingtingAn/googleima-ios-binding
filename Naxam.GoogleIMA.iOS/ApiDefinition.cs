@@ -698,7 +698,7 @@ namespace GoogleIMA
 		// -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
 		[Export ("initWithAdsResponse:adDisplayContainer:contentPlayhead:userContext:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IMAContentPlayhead contentPlayhead, NSObject userContext);
+		IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
 
 		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
 		//[Export ("initWithAdTagUrl:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]

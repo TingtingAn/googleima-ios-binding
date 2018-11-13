@@ -69,7 +69,7 @@ extern const int kIMAAutodetectBitrate;
 @interface IMAAdsRenderingSettings : NSObject
 
 /**
- *  If specified, the SDK will prioritize the media with MIME type on the list.
+ *  If specified, the SDK will play the media with MIME type on the list.
  *  List of strings specifying the MIME types. When nil or empty, the SDK will
  *  use it's default list of MIME types supported on iOS.
  *  Example: @[ @"video/mp4", @"application/x-mpegURL" ]
@@ -88,8 +88,8 @@ extern const int kIMAAutodetectBitrate;
 
 /**
  *  For VMAP and ad rules playlists, only play ad breaks scheduled after this time (in seconds).
- *  This setting is strictly after - for example, setting playAdsAfterTime to 15 will ignore an ad
- *  break scheduled to play at 15s.
+ *  This setting is strictly after the specified time. For example, setting playAdsAfterTime to
+ *  15 will ignore an ad break scheduled to play at 15s.
  */
 @property(nonatomic) NSTimeInterval playAdsAfterTime;
 
@@ -99,6 +99,13 @@ extern const int kIMAAutodetectBitrate;
  *  <a href="../Enums/IMAUiElementType.html">IMAUiElementType</a>.
  */
 @property(nonatomic, copy) NSArray *uiElements;
+
+/**
+ *  Whether or not to disable ad UI for non TrueView ads. Check Ad.getDisableUi to check if this
+ *  request was honored. Default is false.
+ *  :nodoc:
+ */
+@property(nonatomic) BOOL disableUi;
 
 /**
  *  Specifies the optional UIViewController that will be used to present an

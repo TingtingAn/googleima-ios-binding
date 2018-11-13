@@ -60,8 +60,9 @@
  *  Informs the SDK the ad playback failed due to an error.
  *
  *  @param videoDisplay the IMAVideoDisplay that failed to play the ad
+ *  @param error the error that caused the video display to fail to play the ad
  */
-- (void)videoDisplayDidReceiveError:(id<IMAVideoDisplay>)videoDisplay;
+- (void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay didReceiveError:(NSError *)error;
 
 /**
  *  Informs the SDK the ad was skipped.
@@ -110,7 +111,7 @@
  *  @param metadata     the metadata dictionary received with the timed metadata event
  */
 - (void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay
-    didReceiveTimedMetadata:(NSDictionary *)metadata;
+    didReceiveTimedMetadata:(NSDictionary<NSString *, NSString *> *)metadata;
 
 @optional
 

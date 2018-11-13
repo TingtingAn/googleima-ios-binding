@@ -133,6 +133,9 @@ static NSString *const kIMAAdBreakTime = @"kIMAAdBreakTime";
  */
 @property(nonatomic, copy, readonly) NSDictionary *adData;
 
+/**
+ * :nodoc:
+ */
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

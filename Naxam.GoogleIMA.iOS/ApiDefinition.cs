@@ -7,7 +7,7 @@ using UIKit;
 
 namespace GoogleIMA
 {
-    partial interface IIMAContentPlayhead {}
+    //partial interface IIMAContentPlayhead {}
 	// @protocol IMAContentPlayhead
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -33,7 +33,7 @@ namespace GoogleIMA
 		IntPtr Constructor (AVPlayer player);
 	}
 
-	partial interface IIMAAdPlaybackInfo { }
+	//partial interface IIMAAdPlaybackInfo { }
 	// @protocol IMAAdPlaybackInfo <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
@@ -60,7 +60,7 @@ namespace GoogleIMA
 		bool Playing { [Bind ("isPlaying")] get; }
 	}
 
-    partial interface IIMAVideoDisplayDelegate {}
+    //partial interface IIMAVideoDisplayDelegate {}
 	// @protocol IMAVideoDisplayDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
@@ -69,52 +69,52 @@ namespace GoogleIMA
 		// @required -(void)videoDisplayDidPlay:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidPlay:")]
-		void VideoDisplayDidPlay (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidPlay (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidPause:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidPause:")]
-		void VideoDisplayDidPause (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidPause (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidResume:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidResume:")]
-		void VideoDisplayDidResume (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidResume (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidStart:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidStart:")]
-		void VideoDisplayDidStart (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidStart (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidComplete:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidComplete:")]
-		void VideoDisplayDidComplete (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidComplete (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidClick:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidClick:")]
-		void VideoDisplayDidClick (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidClick (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidReceiveError:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidReceiveError:")]
-		void VideoDisplayDidReceiveError (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidReceiveError (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidSkip:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidSkip:")]
-		void VideoDisplayDidSkip (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidSkip (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidShowSkip:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidShowSkip:")]
-		void VideoDisplayDidShowSkip (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidShowSkip (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplayDidLoad:(id<IMAVideoDisplay>)videoDisplay;
 		[Abstract]
 		[Export ("videoDisplayDidLoad:")]
-		void VideoDisplayDidLoad (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidLoad (IMAVideoDisplay videoDisplay);
 
 		// @required -(void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay volumeChangedTo:(NSNumber *)volume;
 		[Abstract]
@@ -124,36 +124,39 @@ namespace GoogleIMA
 		// @required -(void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay didProgressWithMediaTime:(NSTimeInterval)mediaTime totalTime:(NSTimeInterval)duration;
 		[Abstract]
 		[Export ("videoDisplay:didProgressWithMediaTime:totalTime:")]
-		void VideoDisplay (IIMAVideoDisplay videoDisplay, double mediaTime, double duration);
+		void VideoDisplay (IMAVideoDisplay videoDisplay, double mediaTime, double duration);
 
 		// @required -(void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay didReceiveTimedMetadata:(NSDictionary *)metadata;
 		[Abstract]
 		[Export ("videoDisplay:didReceiveTimedMetadata:")]
-		void VideoDisplay (IIMAVideoDisplay videoDisplay, NSDictionary metadata);
+		void VideoDisplay (IMAVideoDisplay videoDisplay, NSDictionary metadata);
 
 		// @optional -(void)videoDisplay:(id<IMAVideoDisplay>)videoDisplay didBufferToMediaTime:(NSTimeInterval)mediaTime;
 		[Export ("videoDisplay:didBufferToMediaTime:")]
-		void VideoDisplay (IIMAVideoDisplay videoDisplay, double mediaTime);
+		void VideoDisplay (IMAVideoDisplay videoDisplay, double mediaTime);
 
 		// @optional -(void)videoDisplayIsPlaybackReady:(id<IMAVideoDisplay>)videoDisplay;
 		[Export ("videoDisplayIsPlaybackReady:")]
-		void VideoDisplayIsPlaybackReady (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayIsPlaybackReady (IMAVideoDisplay videoDisplay);
 
 		// @optional -(void)videoDisplayDidStartBuffering:(id<IMAVideoDisplay>)videoDisplay;
 		[Export ("videoDisplayDidStartBuffering:")]
-		void VideoDisplayDidStartBuffering (IIMAVideoDisplay videoDisplay);
+		void VideoDisplayDidStartBuffering (IMAVideoDisplay videoDisplay);
 	}
 
-    partial interface IIMAVideoDisplay {}
+    //partial interface IIMAVideoDisplay {}
 	// @protocol IMAVideoDisplay <IMAAdPlaybackInfo>
 	[Protocol, Model]
     [BaseType(typeof(NSObject))]
 	interface IMAVideoDisplay : IMAAdPlaybackInfo
 	{
+        [Wrap("WeakDelegate")]
+        IMAVideoDisplayDelegate Delegate { get; set; }
+
 		// @required @property (nonatomic, weak) id<IMAVideoDisplayDelegate> delegate;
 		[Abstract]
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IIMAVideoDisplayDelegate WeakDelegate { get; set; }
+        NSObject WeakDelegate { get; set; }
 
 		// @required @property (assign, nonatomic) float volume;
 		[Abstract]
@@ -187,8 +190,8 @@ namespace GoogleIMA
 	}
 
 	[Static]
-	partial interface IMASubtitleConstants
-	{
+	partial interface kIMASubtitle
+    {
 		// extern NSString *const kIMASubtitleLanguage;
 		[Field ("kIMASubtitleLanguage", "__Internal")]
 		NSString Language { get; }
@@ -202,8 +205,18 @@ namespace GoogleIMA
 		NSString Ttml { get; }
 	}
 
-	// @interface IMAAVPlayerVideoDisplay : NSObject <IMAVideoDisplay>
-	[BaseType (typeof(NSObject))]
+    // @protocol IMAAVPlayerVideoDisplayDelegate <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject))]
+    interface IMAAVPlayerVideoDisplayDelegate
+    {
+        // @optional -(void)avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay willLoadStreamAsset:(AVURLAsset *)avUrlAsset;
+        [Export("avPlayerVideoDisplay:willLoadStreamAsset:")]
+        void WillLoadStreamAsset(IMAAVPlayerVideoDisplay avPlayerVideoDisplay, AVUrlAsset avUrlAsset);
+    }
+
+    // @interface IMAAVPlayerVideoDisplay : NSObject <IMAVideoDisplay>
+    [BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
 	interface IMAAVPlayerVideoDisplay : IMAVideoDisplay
 	{
@@ -215,8 +228,15 @@ namespace GoogleIMA
 		[Export ("playerItem", ArgumentSemantic.Strong)]
 		AVPlayerItem PlayerItem { get; }
 
-		// @property (readonly, nonatomic, strong) NSArray * subtitles;
-		[Export ("subtitles", ArgumentSemantic.Strong)]
+        [Wrap("WeakAvPlayerVideoDisplayDelegate")]
+        IMAAVPlayerVideoDisplayDelegate AvPlayerVideoDisplayDelegate { get; set; }
+
+        // @property (nonatomic, weak) id<IMAAVPlayerVideoDisplayDelegate> avPlayerVideoDisplayDelegate;
+        [NullAllowed, Export("avPlayerVideoDisplayDelegate", ArgumentSemantic.Weak)]
+        NSObject WeakAvPlayerVideoDisplayDelegate { get; set; }
+
+        // @property (readonly, nonatomic, strong) NSArray * subtitles;
+        [Export ("subtitles", ArgumentSemantic.Strong)]
 		NSObject[] Subtitles { get; }
 
 		// -(instancetype)initWithAVPlayer:(AVPlayer *)player;
@@ -339,8 +359,12 @@ namespace GoogleIMA
 		[Export ("dealID")]
 		string DealID { get; }
 
-		// @property (readonly, copy, nonatomic) NSArray<NSString *> * wrapperCreativeIDs;
-		[Export ("wrapperCreativeIDs", ArgumentSemantic.Copy)]
+        // @property (readonly, copy, nonatomic) NSArray<NSString *> * wrapperAdIDs;
+        [Export("wrapperAdIDs", ArgumentSemantic.Copy)]
+        string[] WrapperAdIDs { get; }
+
+        // @property (readonly, copy, nonatomic) NSArray<NSString *> * wrapperCreativeIDs;
+        [Export ("wrapperCreativeIDs", ArgumentSemantic.Copy)]
 		string[] WrapperCreativeIDs { get; }
 
 		// @property (readonly, copy, nonatomic) NSArray<NSString *> * wrapperSystems;
@@ -437,7 +461,7 @@ namespace GoogleIMA
 		NSObject UserContext { get; }
 	}
 
-    partial interface IIMAAdsLoaderDelegate {}
+    //partial interface IIMAAdsLoaderDelegate {}
 	// @protocol IMAAdsLoaderDelegate
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -491,7 +515,7 @@ namespace GoogleIMA
 		void ContentComplete ();
 	}
 
-    partial interface IIMAAdsManagerDelegate {}
+    //partial interface IIMAAdsManagerDelegate {}
 	// @protocol IMAAdsManagerDelegate
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -578,8 +602,12 @@ namespace GoogleIMA
 		[Export ("skip")]
 		void Skip ();
 
-		// -(void)destroy;
-		[Export ("destroy")]
+        // -(void)clicked;
+        [Export("clicked")]
+        void Clicked();
+
+        // -(void)destroy;
+        [Export ("destroy")]
 		void Destroy ();
 
 		// -(void)discardAdBreak;
@@ -588,14 +616,14 @@ namespace GoogleIMA
 	}
 
 	[Static]
-	partial interface IMAAutodetectConstants
-	{
+	partial interface kIMAAutodetect
+    {
 		// extern const int kIMAAutodetectBitrate;
 		[Field ("kIMAAutodetectBitrate", "__Internal")]
 		int Bitrate { get; }
 	}
 
-    partial interface IIMAWebOpenerDelegate {}
+    //partial interface IIMAWebOpenerDelegate {}
 	// @protocol IMAWebOpenerDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
@@ -642,8 +670,12 @@ namespace GoogleIMA
 		[Export ("uiElements", ArgumentSemantic.Copy)]
 		NSObject[] UiElements { get; set; }
 
-		// @property (nonatomic, weak) UIViewController * webOpenerPresentingController;
-		[Export ("webOpenerPresentingController", ArgumentSemantic.Weak)]
+        // @property (nonatomic) BOOL disableUi;
+        [Export("disableUi")]
+        bool DisableUi { get; set; }
+
+        // @property (nonatomic, weak) UIViewController * webOpenerPresentingController;
+        [Export ("webOpenerPresentingController", ArgumentSemantic.Weak)]
 		UIViewController WebOpenerPresentingController { get; set; }
 
 		[Wrap ("WeakWebOpenerDelegate")]
@@ -679,8 +711,12 @@ namespace GoogleIMA
 		[Export ("adWillAutoPlay")]
 		bool AdWillAutoPlay { get; set; }
 
-		// @property (nonatomic) float contentDuration;
-		[Export ("contentDuration")]
+        // @property (nonatomic) BOOL adWillPlayMuted;
+        [Export("adWillPlayMuted")]
+        bool AdWillPlayMuted { get; set; }
+
+        // @property (nonatomic) float contentDuration;
+        [Export ("contentDuration")]
 		float ContentDuration { get; set; }
 
 		// @property (copy, nonatomic) NSArray<NSString *> * contentKeywords;
@@ -691,26 +727,34 @@ namespace GoogleIMA
 		[Export ("contentTitle")]
 		string ContentTitle { get; set; }
 
-		// -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
-		//[Export ("initWithAdsResponse:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
-		//IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
+        // @property (nonatomic) float vastLoadTimeout;
+        [Export("vastLoadTimeout")]
+        float VastLoadTimeout { get; set; }
 
-		// -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
-		//[Export ("initWithAdsResponse:adDisplayContainer:contentPlayhead:userContext:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
+        // @property (nonatomic) float liveStreamPrefetchSeconds;
+        [Export("liveStreamPrefetchSeconds")]
+        float LiveStreamPrefetchSeconds { get; set; }
 
-		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
-		[Export ("initWithAdTagUrl:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
+        // -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
+        //[Export ("initWithAdsResponse:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
+        //IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
+
+        // -(instancetype)initWithAdsResponse:(NSString *)adsResponse adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
+        //[Export ("initWithAdsResponse:adDisplayContainer:contentPlayhead:userContext:")]
+        //[DesignatedInitializer]
+        //IntPtr Constructor (string adsResponse, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
+
+        //// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy userContext:(id)userContext;
+        [Export ("initWithAdTagUrl:adDisplayContainer:avPlayerVideoDisplay:pictureInPictureProxy:userContext:")]
 		IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAAVPlayerVideoDisplay avPlayerVideoDisplay, IMAPictureInPictureProxy pictureInPictureProxy, NSObject userContext);
 
 		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
 		[Export ("initWithAdTagUrl:adDisplayContainer:contentPlayhead:userContext:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, NSObject userContext);
+        IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAContentPlayhead contentPlayhead, [NullAllowed]NSObject userContext);
 	}
 
-    partial interface IIMACompanionDelegate {}
+    //partial interface IIMACompanionDelegate {}
 	// @protocol IMACompanionDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
@@ -772,33 +816,33 @@ namespace GoogleIMA
 		bool Played { [Bind ("isPlayed")] get; }
 	}
 
-	[Static]
-	partial interface IMAStreamParamConstants
-	{
-		// extern NSString *const kIMAStreamParamIU;
-		[Field ("kIMAStreamParamIU", "__Internal")]
-		NSString IU { get; }
+	//[Static]
+	//partial interface IMAStreamParamConstants
+	//{
+	//	// extern NSString *const kIMAStreamParamIU;
+	//	[Field ("kIMAStreamParamIU", "__Internal")]
+	//	NSString IU { get; }
 
-		// extern NSString *const kIMAStreamParamDescriptionURL;
-		[Field ("kIMAStreamParamDescriptionURL", "__Internal")]
-		NSString DescriptionURL { get; }
+	//	// extern NSString *const kIMAStreamParamDescriptionURL;
+	//	[Field ("kIMAStreamParamDescriptionURL", "__Internal")]
+	//	NSString DescriptionURL { get; }
 
-		// extern NSString *const kIMAStreamParamCustomParameters;
-		[Field ("kIMAStreamParamCustomParameters", "__Internal")]
-		NSString CustomParameters { get; }
+	//	// extern NSString *const kIMAStreamParamCustomParameters;
+	//	[Field ("kIMAStreamParamCustomParameters", "__Internal")]
+	//	NSString CustomParameters { get; }
 
-		// extern NSString *const kIMAStreamParamTFCD;
-		[Field ("kIMAStreamParamTFCD", "__Internal")]
-		NSString Tfcd { get; }
+	//	// extern NSString *const kIMAStreamParamTFCD;
+	//	[Field ("kIMAStreamParamTFCD", "__Internal")]
+	//	NSString Tfcd { get; }
 
-		// extern NSString *const kIMAStreamParamOrderVariant;
-		[Field ("kIMAStreamParamOrderVariant", "__Internal")]
-		NSString OrderVariant { get; }
+	//	// extern NSString *const kIMAStreamParamOrderVariant;
+	//	[Field ("kIMAStreamParamOrderVariant", "__Internal")]
+	//	NSString OrderVariant { get; }
 
-		// extern NSString *const kIMAStreamParamOrderType;
-		[Field ("kIMAStreamParamOrderType", "__Internal")]
-		NSString OrderType { get; }
-	}
+	//	// extern NSString *const kIMAStreamParamOrderType;
+	//	[Field ("kIMAStreamParamOrderType", "__Internal")]
+	//	NSString OrderType { get; }
+	//}
 
 	// @interface IMAStreamRequest : NSObject
 	[BaseType (typeof(NSObject))]
@@ -844,16 +888,16 @@ namespace GoogleIMA
 		string AssetKey { get; }
 
 		// @property (nonatomic) BOOL attemptPreroll;
-		[Export ("attemptPreroll")]
-		bool AttemptPreroll { get; set; }
+		//[Export ("attemptPreroll")]
+		//bool AttemptPreroll { get; set; }
 
 		// -(instancetype)initWithAssetKey:(NSString *)assetKey adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer videoDisplay:(id<IMAVideoDisplay>)videoDisplay;
 		[Export ("initWithAssetKey:adDisplayContainer:videoDisplay:")]
-		IntPtr Constructor (string assetKey, IMAAdDisplayContainer adDisplayContainer, IIMAVideoDisplay videoDisplay);
+		IntPtr Constructor (string assetKey, IMAAdDisplayContainer adDisplayContainer, IMAVideoDisplay videoDisplay);
 
 		// -(instancetype)initWithAssetKey:(NSString *)assetKey adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer videoDisplay:(id<IMAVideoDisplay>)videoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy;
 		[Export ("initWithAssetKey:adDisplayContainer:videoDisplay:pictureInPictureProxy:")]
-		IntPtr Constructor (string assetKey, IMAAdDisplayContainer adDisplayContainer, IIMAVideoDisplay videoDisplay, IMAPictureInPictureProxy pictureInPictureProxy);
+		IntPtr Constructor (string assetKey, IMAAdDisplayContainer adDisplayContainer, IMAVideoDisplay videoDisplay, IMAPictureInPictureProxy pictureInPictureProxy);
 	}
 
 	// @interface IMAPictureInPictureProxy : NSProxy <AVPictureInPictureControllerDelegate, AVPlayerViewControllerDelegate>
@@ -919,7 +963,7 @@ namespace GoogleIMA
 		bool EnableDebugMode { get; set; }
 	}
 
-    partial interface IIMAStreamManagerDelegate {}
+    //partial interface IIMAStreamManagerDelegate {}
 
 	// @protocol IMAStreamManagerDelegate
 	[Protocol, Model]
@@ -994,10 +1038,10 @@ namespace GoogleIMA
 
 		// -(instancetype)initWithContentSourceID:(NSString *)contentSourceID videoID:(NSString *)videoID adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer videoDisplay:(id<IMAVideoDisplay>)videoDisplay;
 		[Export ("initWithContentSourceID:videoID:adDisplayContainer:videoDisplay:")]
-		IntPtr Constructor (string contentSourceID, string videoID, IMAAdDisplayContainer adDisplayContainer, IIMAVideoDisplay videoDisplay);
+		IntPtr Constructor (string contentSourceID, string videoID, IMAAdDisplayContainer adDisplayContainer, IMAVideoDisplay videoDisplay);
 
 		// -(instancetype)initWithContentSourceID:(NSString *)contentSourceID videoID:(NSString *)videoID adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer videoDisplay:(id<IMAVideoDisplay>)videoDisplay pictureInPictureProxy:(IMAPictureInPictureProxy *)pictureInPictureProxy;
 		[Export ("initWithContentSourceID:videoID:adDisplayContainer:videoDisplay:pictureInPictureProxy:")]
-		IntPtr Constructor (string contentSourceID, string videoID, IMAAdDisplayContainer adDisplayContainer, IIMAVideoDisplay videoDisplay, IMAPictureInPictureProxy pictureInPictureProxy);
+		IntPtr Constructor (string contentSourceID, string videoID, IMAAdDisplayContainer adDisplayContainer, IMAVideoDisplay videoDisplay, IMAPictureInPictureProxy pictureInPictureProxy);
 	}
 }

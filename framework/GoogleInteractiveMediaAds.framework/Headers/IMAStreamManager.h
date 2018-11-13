@@ -136,6 +136,9 @@
  */
 - (IMACuepoint *)previousCuepointForStreamTime:(NSTimeInterval)streamTime;
 
+/**
+ * :nodoc:
+ */
 - (instancetype)init NS_UNAVAILABLE;
 
 /**

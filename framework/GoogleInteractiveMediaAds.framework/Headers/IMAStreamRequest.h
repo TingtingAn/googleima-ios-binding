@@ -12,36 +12,6 @@
 @protocol IMAVideoDisplay;
 
 /**
- *  The inventory unit (iu).
- */
-extern NSString *const kIMAStreamParamIU;
-
-/**
- *  The description url (description_url).
- */
-extern NSString *const kIMAStreamParamDescriptionURL;
-
-/**
- *  The custom parameters (cust_params).
- */
-extern NSString *const kIMAStreamParamCustomParameters;
-
-/**
- *  Tag for child detection parameter (tfcd).
- */
-extern NSString *const kIMAStreamParamTFCD;
-
-/**
- *  The order variant parameter (dai-ov).
- */
-extern NSString *const kIMAStreamParamOrderVariant;
-
-/**
- *  The order type parameter (dai-ot).
- */
-extern NSString *const kIMAStreamParamOrderType;
-
-/**
  *  Data class describing the stream request.
  */
 @interface IMAStreamRequest : NSObject
@@ -75,7 +45,6 @@ extern NSString *const kIMAStreamParamOrderType;
 /**
  *  The ID to be used to debug the stream with the stream activity monitor. This is used to provide
  *  a convenient way to allow publishers to find a stream log in the stream activity monitor tool.
- *  :nodoc:
  */
 @property(nonatomic, copy) NSString *streamActivityMonitorID;
 
@@ -98,6 +67,9 @@ extern NSString *const kIMAStreamParamOrderType;
  */
 @property(nonatomic, copy) NSString *manifestURLSuffix;
 
+/**
+ * :nodoc:
+ */
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

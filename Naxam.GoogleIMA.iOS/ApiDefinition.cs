@@ -7,7 +7,7 @@ using UIKit;
 
 namespace GoogleIMA
 {
-    //partial interface IIMAContentPlayhead {}
+    partial interface IIMAContentPlayhead {}
 	// @protocol IMAContentPlayhead
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -751,7 +751,7 @@ namespace GoogleIMA
 		//// -(instancetype)initWithAdTagUrl:(NSString *)adTagUrl adDisplayContainer:(IMAAdDisplayContainer *)adDisplayContainer contentPlayhead:(NSObject<IMAContentPlayhead> *)contentPlayhead userContext:(id)userContext __attribute__((objc_designated_initializer));
 		[Export ("initWithAdTagUrl:adDisplayContainer:contentPlayhead:userContext:")]
 		[DesignatedInitializer]
-        IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IMAContentPlayhead contentPlayhead, [NullAllowed]NSObject userContext);
+        IntPtr Constructor (string adTagUrl, IMAAdDisplayContainer adDisplayContainer, IIMAContentPlayhead contentPlayhead, [NullAllowed]NSObject userContext);
 	}
 
     //partial interface IIMACompanionDelegate {}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,6 +10,19 @@
     <RootNamespace>Naxam.GoogleIMA.iOS</RootNamespace>
     <AssemblyName>Naxam.GoogleIMA.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>Funky.GoogleIMA.iOS</PackageId>
+    <PackageVersion>3.7.3</PackageVersion>
+    <Authors>Wenfengcheng, NAXAM</Authors>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Owners>Wenfengcheng, NAXAM CO.,LTD</Owners>
+    <PackageProjectUrl>https://github.com/Wenfengcheng/googleima-ios-binding</PackageProjectUrl>
+    <PackageReleaseNotes>GoogleIMA 3.7.3</PackageReleaseNotes>
+    <Summary>Xamarin Binding Library - Goolge IMA</Summary>
+    <PackageTags>Xamarin.iOS,  Xamarin, google-ima, ima, interactive-media-ads, vast</PackageTags>
+    <Title>Funky - Goolge IMA</Title>
+    <Description>Xamarin.iOS Binding Library - GoogleIMA</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,5 +60,9 @@
       <ForceLoad>True</ForceLoad>
     </NativeReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
 </Project>

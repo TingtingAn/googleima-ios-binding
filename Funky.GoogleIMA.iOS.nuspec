@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata minClientVersion="">
+    <id>Funky.GoogleIMA.iOS</id>
+    <version>3.7.3</version>
+    <title>Funky - Goolge IMA</title>
+    <authors>Wenfengcheng, NAXAM</authors>
+    <owners>Wenfengcheng, NAXAM CO.,LTD</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/Wenfengcheng/googleima-ios-binding</projectUrl>
+    <description>Xamarin.iOS Binding Library - GoogleIMA</description>
+    <summary>Xamarin Binding Library - Goolge IMA</summary>
+    <releaseNotes>GoogleIMA 3.7.3</releaseNotes>
+    <copyright></copyright>
+    <language>en</language>
+    <tags>Xamarin.iOS,  Xamarin, google-ima, ima, interactive-media-ads, vast</tags>
+    <dependencies>
+      <group targetFramework="Xamarin.iOS1.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="Xamarin.iOS1.0" />
+      <frameworkAssembly assemblyName="Xamarin.iOS" targetFramework="Xamarin.iOS1.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="/Users/highview/Desktop/PersionGit/googleima-ios-binding/Naxam.GoogleIMA.iOS/bin/Release/Naxam.GoogleIMA.iOS.dll" target="lib/xamarinios10/Naxam.GoogleIMA.iOS.dll" />
+  </files>
+</package>

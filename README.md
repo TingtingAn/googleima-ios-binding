@@ -6,9 +6,10 @@ This is the binding library for Goole IMA library on iOS.
 
 Plz follow the official guide from Google [here](https://developers.google.com/interactive-media-ads/);
 
-```
-Install-Package Funky.GoogleIMA.iOS -Version 3.7.3
-```
+#### Setup
+* Available on NuGet: https://www.nuget.org/packages/Funky.GoogleIMA.iOS/ [![NuGet](https://img.shields.io/nuget/v/Funky.GoogleIMA.iOS.svg?label=NuGet)](https://www.nuget.org/packages/Funky.GoogleIMA.iOS/)
+* Install in your iOS client projects.
 
+#### ScreenShot
 <a href="https://github.com/Wenfengcheng/googleima-ios-binding/blob/master/1542274521559.gif">
 <img src="https://github.com/Wenfengcheng/googleima-ios-binding/blob/master/1542274521559.gif"></a>

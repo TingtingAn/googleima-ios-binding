@@ -14,7 +14,7 @@ namespace GoogleIMAQs
         public IMAAVPlayerContentPlayhead ContentPlayhead { get; set; }
         public IMAAdsManager AdsManager { get; set; }
         public const string TestContentUrl_MP4 = "https://0.s3.envato.com/h264-video-previews/80fad324-9db4-11e3-bf3d-0050569255a8/490527.mp4";
-        public const string TestAdTagUrl = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator=";
+        public const string TestAdTagUrl = "https://test.bopodastaging.top/vmap/70.xml";
 
         protected ViewController(IntPtr handle) : base(handle)
         {

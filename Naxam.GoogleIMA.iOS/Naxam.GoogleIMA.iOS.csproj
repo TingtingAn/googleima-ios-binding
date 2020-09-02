@@ -12,13 +12,13 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Funky.GoogleIMA.iOS</PackageId>
-    <PackageVersion>3.7.3</PackageVersion>
+    <PackageVersion>3.12.1</PackageVersion>
     <Authors>Wenfengcheng, NAXAM</Authors>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <Owners>Wenfengcheng, NAXAM CO.,LTD</Owners>
     <PackageProjectUrl>https://github.com/Wenfengcheng/googleima-ios-binding</PackageProjectUrl>
-    <PackageReleaseNotes>GoogleIMA 3.7.3</PackageReleaseNotes>
+    <PackageReleaseNotes>GoogleIMA 3.12.1</PackageReleaseNotes>
     <Summary>Xamarin Binding Library - Goolge IMA</Summary>
     <PackageTags>Xamarin.iOS,  Xamarin, google-ima, ima, interactive-media-ads, vast</PackageTags>
     <Title>Funky - Goolge IMA</Title>

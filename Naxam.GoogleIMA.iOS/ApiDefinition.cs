@@ -385,10 +385,13 @@ namespace GoogleIMA
 		[Export ("companionSlots", ArgumentSemantic.Copy)]
 		NSObject[] CompanionSlots { get; }
 
-		// -(instancetype)initWithAdContainer:(UIView *)adContainer companionSlots:(NSArray *)companionSlots __attribute__((objc_designated_initializer));
-		[Export ("initWithAdContainer:companionSlots:")]
-		[DesignatedInitializer]
-        IntPtr Constructor (UIView adContainer, [NullAllowed] NSObject[] companionSlots);
+		// -(instancetype _Nonnull)initWithAdContainer:(UIView * _Nonnull)adContainer viewController:(UIViewController * _Nullable)adContainerViewController;
+		[Export("initWithAdContainer:viewController:")]
+		IntPtr Constructor(UIView adContainer, [NullAllowed] UIViewController adContainerViewController);
+
+		// -(instancetype _Nonnull)initWithAdContainer:(UIView * _Nonnull)adContainer viewController:(UIViewController * _Nullable)adContainerViewController companionSlots:(NSArray<IMACompanionAdSlot *> * _Nullable)companionSlots;
+		[Export("initWithAdContainer:viewController:companionSlots:")]
+		IntPtr Constructor(UIView adContainer, [NullAllowed] UIViewController adContainerViewController, [NullAllowed] IMACompanionAdSlot[] companionSlots);
 	}
 
 	// @interface IMAAdError : NSObject

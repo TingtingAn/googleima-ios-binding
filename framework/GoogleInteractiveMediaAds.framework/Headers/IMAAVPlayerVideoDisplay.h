@@ -16,74 +16,83 @@
 @class IMAAVPlayerVideoDisplay;
 
 /**
- *  The key for subtitle language.
+ * The key for subtitle language.
  */
 extern NSString *const kIMASubtitleLanguage;
 
 /**
- *  The key for the WebVTT sidecar subtitle URL.
+ * The key for the WebVTT sidecar subtitle URL.
  */
 extern NSString *const kIMASubtitleWebVTT;
 
 /**
- *  The key for the TTML sidecar subtitle URL.
+ * The key for the TTML sidecar subtitle URL.
  */
 extern NSString *const kIMASubtitleTTML;
 
 /**
- *  A callback protocol for IMAAVPlayerVideoDisplayDelegate.
+ * A callback protocol for IMAAVPlayerVideoDisplayDelegate.
  */
 @protocol IMAAVPlayerVideoDisplayDelegate<NSObject>
 
 @optional
 
 /**
- *  Called when the IMAAVPlayerVideoDisplay will load a stream for playback. Allows the publisher to
- *  register the AVURLAsset for Fairplay content protection before playback starts.
+ * Called when the IMAAVPlayerVideoDisplay will load a stream for playback. Allows the publisher to
+ * register the AVURLAsset for Fairplay content protection before playback starts.
  *
- *  @param avPlayerVideoDisplay the IMAVPlayerVideoDisplay that will load the AVURLAsset.
- *  @param avUrlAsset           the AVURLAsset representing the stream to be loaded.
+ * @param playerVideoDisplay the IMAVPlayerVideoDisplay that will load the AVURLAsset.
+ * @param URLAsset           the AVURLAsset representing the stream to be loaded.
  */
-- (void)avPlayerVideoDisplay:(IMAAVPlayerVideoDisplay *)avPlayerVideoDisplay
-         willLoadStreamAsset:(AVURLAsset *)avUrlAsset;
+- (void)playerVideoDisplay:(IMAAVPlayerVideoDisplay *)playerVideoDisplay
+       willLoadStreamAsset:(AVURLAsset *)URLAsset;
+
+/**
+ * Called when the <code>IMAAVPlayerVideoDisplay</code> has at least partially loaded media for
+ * playback and the player item is loaded. Only called for dynamic ad insertion.
+ */
+- (void)playerVideoDisplay:(IMAAVPlayerVideoDisplay *)playerVideoDisplay
+         didLoadPlayerItem:(AVPlayerItem *)playerItem;
 
 @end
 
 /**
- *  An implementation of the IMAVideoDisplay protocol. This object is intended
- *  to be initialized with the content player, and will reuse the player for
- *  playing ads.
+ * An implementation of the IMAVideoDisplay protocol. This object is intended
+ * to be initialized with the content player, and will reuse the player for
+ * playing ads.
  */
 @interface IMAAVPlayerVideoDisplay : NSObject <IMAVideoDisplay>
 
 /**
- *  The content player used for both content and ad video playback.
+ * The content player used for both content and ad video playback.
  */
-@property(nonatomic, strong, readonly) AVPlayer *player;
+@property(nonatomic, strong, readonly) AVPlayer *player DEPRECATED_MSG_ATTRIBUTE(
+    "Use the player passed into initWithAVPlayer: instead.");
 
 /**
- *  The player item that will be played by the player. Access to the player item is provided
- *  so the item can be seeked before it is ready to play.
+ * The player item that will be played by the player. Access to the player item is provided
+ * so the item can be seeked, to select subtitles, and to inspect media attributes.
  */
-@property(nonatomic, strong, readonly) AVPlayerItem *playerItem;
+@property(nonatomic, strong, readonly) AVPlayerItem *playerItem DEPRECATED_MSG_ATTRIBUTE(
+    "Use playerVideoDisplay:didLoadPlayerItem: instead.");
 
 /**
- *  Allows the publisher to receive IMAAVPlayerVideoDisplay specific events.
+ * Allows the publisher to receive IMAAVPlayerVideoDisplay specific events.
  */
-@property(nonatomic, weak) id<IMAAVPlayerVideoDisplayDelegate> avPlayerVideoDisplayDelegate;
+@property(nonatomic, weak) id<IMAAVPlayerVideoDisplayDelegate> playerVideoDisplayDelegate;
 
 /**
- *  The subtitles for the current stream. Will be nil until the stream starts playing.
+ * The subtitles for the current stream. Will be nil until the stream starts playing.
  */
 @property(nonatomic, strong, readonly) NSArray *subtitles;
 
 /**
- *  Creates an IMAAVPlayerVideoDisplay that will play ads in the passed in
- *  content player.
+ * Creates an IMAAVPlayerVideoDisplay that will play ads in the passed in
+ * content player.
  *
- *  @param player the AVPlayer instance used for playing content
+ * @param player the AVPlayer instance used for playing content
  *
- *  @return an IMAAVPlayerVideoDisplay instance
+ * @return an IMAAVPlayerVideoDisplay instance
  */
 - (instancetype)initWithAVPlayer:(AVPlayer *)player;
 
